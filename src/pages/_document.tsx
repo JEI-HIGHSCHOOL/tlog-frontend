@@ -14,13 +14,16 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang='en'>
+      <Html lang='ko'>
         <Head>
           <link
-            rel='preload'
-            href='/fonts/inter-var-latin.woff2'
-            as='font'
-            type='font/woff2'
+            rel='stylesheet'
+            href='//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css'
+          />
+          <link
+            rel='stylesheet'
+            href='https://use.fontawesome.com/releases/v5.15.4/css/all.css'
+            integrity='sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm'
             crossOrigin='anonymous'
           />
         </Head>

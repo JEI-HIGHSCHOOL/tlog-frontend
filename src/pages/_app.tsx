@@ -1,16 +1,28 @@
 import { AppProps } from 'next/app';
+import { ToastContainer } from 'react-toastify';
+import axios from 'axios';
 
 import '@/styles/globals.css';
-// !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
+import 'react-toastify/dist/ReactToastify.css';
+import '@/styles/card.css';
 
-/**
- * !STARTERCONF info
- * ? `Layout` component is called in every page using `np` snippets. If you have consistent layout across all page, you can add it here too
- */
+import Header from '@/components/layout/Header';
+import Seo from '@/components/Seo';
+import config from '@/utils/Constants';
+
+axios.defaults.baseURL = config.BASE_API_URL;
+axios.defaults.withCredentials = true;
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Seo />
+      <Header />
+      <Component {...pageProps} />;
+      <ToastContainer />
+    </>
+  );
 }
 
 export default MyApp;
