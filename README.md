@@ -1,3 +1,3 @@
 <div align="center">
-  <h1>TLOGr</h1>
+  <h1>TLOG</h1>
 </div>
