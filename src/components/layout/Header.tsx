@@ -7,6 +7,8 @@ import { setCookie } from '@/utils/utils';
 import { useRouter } from 'next/router';
 import Toast from '@/utils/Toast';
 import Logo from '~/images/logo.png';
+import axios from 'axios';
+import request from '@/utils/ApiClient';
 
 const links = [
   { href: '/', label: 'Route 1' },
@@ -42,14 +44,16 @@ export default function Header() {
     setCookie('Authorization', '1', {
       maxAge: 1,
     });
-    window.location.href = router.asPath;
-    Toast('로그아웃 되었습니다.', 'success');
+    request('GET', '/auth/logout').then((data) => {
+      router.reload();
+    });
   };
   return (
     <>
       <nav
-        className='stiky top-0 z-40 flex w-full flex-wrap items-center border-b border-gray-900/10 px-5 py-2 text-gray-100 backdrop-blur'
+        className='fixed top-0 z-40 flex w-full flex-wrap items-center border-b border-gray-900/10 px-5 py-2 text-gray-100 backdrop-blur'
         onClick={() => OnclickNavBarOpen()}
+        style={{ fontFamily: 'LeeSeoyun' }}
       >
         <div className='container mx-auto flex flex-wrap items-center justify-between px-4'>
           <div className='mr-6 flex flex-shrink-0 items-center text-white'>

@@ -19,7 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Seo />
       <Header />
-      <Component {...pageProps} />;
+      <div className='mt-24'>
+        <Component {...pageProps} />
+      </div>
       <ToastContainer />
     </>
   );

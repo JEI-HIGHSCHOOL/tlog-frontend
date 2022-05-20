@@ -7,17 +7,14 @@
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'SuncheonB';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/SuncheonB.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-* {
-  font-family: LeeSeoyun;
-}
 
 .container {
   max-width: 80vw;

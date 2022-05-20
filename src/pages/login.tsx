@@ -35,7 +35,10 @@ export default function RegisterPage() {
   const loginNaver = async () => {};
 
   return (
-    <section className='container flex min-h-[100vh] w-full flex-col items-center justify-center'>
+    <section
+      className='container flex min-h-[100vh] w-full flex-col items-center justify-center'
+      style={{ fontFamily: 'LeeSeoyun' }}
+    >
       <h1 className='text-4xl'>로그인</h1>
       <div className='mt-3 w-full max-w-sm'>
         <h1 className='mt-5 text-xl'>이메일</h1>

@@ -42,6 +42,7 @@ export default function RegisterPage() {
   };
 
   const emailVerify = async () => {
+    if (!emailVerifyCode) return Toast('인증번호를 입력해주세요!', 'error');
     await Client('POST', '/auth/verifycheck', {
       id: emailVerifyId?.toString(),
       token: emailVerifyCode,
