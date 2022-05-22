@@ -11,8 +11,8 @@ import axios from 'axios';
 import request from '@/utils/ApiClient';
 
 const links = [
-  { href: '/', label: 'Route 1' },
-  { href: '/register', label: 'Route 2' },
+  { href: '/', label: '홈' },
+  { href: '/plans', label: '계획' },
 ];
 
 function classNames(...classes: any) {

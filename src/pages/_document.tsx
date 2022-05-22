@@ -36,6 +36,10 @@ class MyDocument extends Document {
             href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap'
             rel='stylesheet'
           />
+          <script
+            type='text/javascript'
+            src='//dapi.kakao.com/v2/maps/sdk.js?appkey=33278a561e2ff3c0c117fcf4698ee381&libraries=services,clusterer'
+          ></script>
         </Head>
         <body>
           <Main />

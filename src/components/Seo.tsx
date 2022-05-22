@@ -5,15 +5,12 @@ import { openGraph } from '@/lib/helper';
 
 // !STARTERCONF Change these default meta
 const defaultMeta = {
-  title: 'TLOG - ',
-  siteName: 'Next.js + Tailwind CSS + TypeScript Starter',
-  description:
-    'A starter for Next.js, Tailwind CSS, and TypeScript with Absolute Import, Seo, Link component, pre-configured with Husky',
-  /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
+  title: 'TLOG - 여행을 계획하고 공유까지 한번에',
+  siteName: 'TLOG - 여행을 계획하고 공유까지 한번에',
+  description: '여행계획을 만들고, 여행한 사진을 등록하고, 여행기록을 공유하고',
   url: 'https://tsnext-tw.thcl.dev',
   type: 'website',
-  robots: 'follow, index',
-  /** No need to be filled, will be populated with openGraph function */
+  robots: '*',
   image: '',
 };
 
