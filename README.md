@@ -1,7 +1,7 @@
 # TLOG
 <div align="center">
   <a href="">
-    <img src="./public/logo_sm.png">
+    <img src="./public/images/logo.png">
   </a>
 </div>
 
