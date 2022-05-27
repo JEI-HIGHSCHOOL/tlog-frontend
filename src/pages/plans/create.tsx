@@ -10,6 +10,7 @@ import Toast from '@/utils/Toast';
 import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { Geolocation, SearchLocation } from 'types';
 
 export default function NewPlansPage() {
   const [geolocation, setGeolocation] = useState<Geolocation>();
@@ -242,19 +243,4 @@ export default function NewPlansPage() {
       </section>
     </>
   );
-}
-
-interface Geolocation {
-  lat: number;
-  lng: number;
-}
-
-export interface SearchLocation {
-  id: string;
-  latitude: number;
-  longitude: number;
-  place_name: string;
-  place_phone: string;
-  place_category_group_name: string;
-  place_address: string;
 }

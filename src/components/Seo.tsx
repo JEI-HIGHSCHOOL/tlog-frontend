@@ -3,10 +3,9 @@ import { useRouter } from 'next/router';
 
 import { openGraph } from '@/lib/helper';
 
-// !STARTERCONF Change these default meta
 const defaultMeta = {
-  title: 'TLOG - 여행을 계획하고 공유까지 한번에',
-  siteName: 'TLOG - 여행을 계획하고 공유까지 한번에',
+  title: 'TLOG - 여행을 계획하고 공유까지',
+  siteName: 'TLOG - 여행을 계획하고 공유까지',
   description: '여행계획을 만들고, 여행한 사진을 등록하고, 여행기록을 공유하고',
   url: 'https://tsnext-tw.thcl.dev',
   type: 'website',

@@ -78,7 +78,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <section className='container flex min-h-[100vh] w-full flex-col items-center justify-center'>
+    <section
+      className='container flex min-h-[100vh] w-full flex-col items-center justify-center'
+      style={{ fontFamily: 'LeeSeoyun' }}
+    >
       <h1 className='text-4xl'>회원가입</h1>
       <div className='mt-3 w-full max-w-sm'>
         <h1 className='text-xl'>이름</h1>

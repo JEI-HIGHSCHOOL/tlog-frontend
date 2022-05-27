@@ -1,5 +1,5 @@
-import { SearchLocation } from '@/pages/plans/create';
 import * as React from 'react';
+import { SearchLocation } from 'types';
 
 const PlanCard: React.FC<PlanCardProps> = ({ location, deletePlan }) => {
   const deletePlanHandler = () => {
