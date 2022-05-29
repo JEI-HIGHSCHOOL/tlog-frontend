@@ -22,6 +22,7 @@ const Button: React.FC<ButtonProps> = ({
       } transform transition duration-100 ease-in hover:-translate-y-1 focus:outline-none focus:ring-1 dark:border-none ${className}`}
       onClick={onClick}
       disabled={disabled}
+      type={type}
     >
       {placeholder}
     </button>
@@ -33,7 +34,7 @@ interface ButtonProps {
   placeholder: string;
   disabled?: boolean;
   size?: 'sm' | 'lg';
-  type?: 'cancel' | 'success' | 'default';
+  type?: 'cancel' | 'success' | 'default' | any;
   className?: string;
 }
 

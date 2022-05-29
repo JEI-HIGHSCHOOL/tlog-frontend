@@ -12,7 +12,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState<string>();
 
   const router = useRouter();
-
+  const redirect = router.query.redirect as string;
   const login = async () => {
     if (!email) return Toast('이메일을 입력해주세요.', 'error');
     if (!password) return Toast('비밀번호를 입력해주세요.', 'error');
@@ -26,10 +26,15 @@ export default function RegisterPage() {
         setCookie('Authorization', data.data.token, {
           maxAge: data.data.expiresIn,
         });
-        window.location.href = '/';
-        Toast(data.message, 'success');
+        window.location.href = redirect ? redirect : '/';
       }
     });
+  };
+
+  const keyPress = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      login();
+    }
   };
 
   const loginNaver = async () => {};
@@ -40,7 +45,7 @@ export default function RegisterPage() {
       style={{ fontFamily: 'LeeSeoyun' }}
     >
       <h1 className='text-4xl'>로그인</h1>
-      <div className='mt-3 w-full max-w-sm'>
+      <div className='mt-3 w-full max-w-sm' onKeyPress={keyPress}>
         <h1 className='mt-5 text-xl'>이메일</h1>
         <Input
           onChange={(e) => setEmail(e.target.value)}

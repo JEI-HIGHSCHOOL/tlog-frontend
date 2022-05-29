@@ -7,6 +7,7 @@ export interface Plans {
   userId: string;
   plans: Plan[];
   owner: User;
+  title: string;
 }
 
 export interface Plan {
