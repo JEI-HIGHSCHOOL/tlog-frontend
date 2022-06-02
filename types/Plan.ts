@@ -21,3 +21,8 @@ export interface Plan {
   place_name: string;
   planId: string;
 }
+
+export interface UserPlans {
+  plans: Plans[];
+  owner: User;
+}
