@@ -158,7 +158,7 @@ export default function NewPlansPage() {
         </h1>
         <span className='text-2xl'>계획이름</span>
         <Input
-          placeholder='2박 3일 인천 여행'
+          placeholder='2박 3일 여행'
           className='mb-2'
           type='title'
           onChange={(e) => {
@@ -168,7 +168,7 @@ export default function NewPlansPage() {
         <span className='text-2xl'>방문할 장소</span>
         <div className='mb-2 flex flex-row'>
           <Input
-            placeholder='송도 센트럴파크'
+            placeholder='서울'
             type='place'
             onChange={(e) => {
               setPlaceName(e.target.value);

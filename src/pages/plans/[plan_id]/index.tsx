@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (
 ) => {
   const data = await Client(
     'GET',
-    `/plans/${encodeURI(context.params?.id as string)}`,
+    `/plans/${encodeURI(context.params?.plan_id as string)}`,
     null,
     context.req.cookies['Authorization']
   );

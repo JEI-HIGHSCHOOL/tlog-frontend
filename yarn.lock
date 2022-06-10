@@ -5894,6 +5894,11 @@ react-kakao-maps-sdk@^1.0.8:
   dependencies:
     kakao.maps.d.ts "^0.1.30"
 
+react-simple-image-slider@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/react-simple-image-slider/-/react-simple-image-slider-2.4.1.tgz#ba80e5741b32a531110cb3811ed9f76e3eee88f8"
+  integrity sha512-9T/WjsRThJup43QxzH202rLVNqaUK9P8izTiWOfLcc5w3QygU44a9IQUuIwGYiXtWvw2spRRGLRc5Xd62/vfDg==
+
 react-toastify@^8.2.0:
   version "8.2.0"
   resolved "https://registry.npmjs.org/react-toastify/-/react-toastify-8.2.0.tgz"

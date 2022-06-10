@@ -20,6 +20,14 @@ export interface Plan {
   place_address: string;
   place_name: string;
   planId: string;
+  plan?: Plans
+  planImage?: PlainImage[]
+}
+
+export interface PlainImage {
+  id: string;
+  planId: string;
+  imageUrl: string;
 }
 
 export interface UserPlans {

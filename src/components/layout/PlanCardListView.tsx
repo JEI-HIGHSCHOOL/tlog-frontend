@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import * as React from 'react';
 import { Plan, SearchLocation } from 'types';
 
@@ -15,7 +16,11 @@ const PlanCard: React.FC<PlanCardProps> = ({ location, deletePlan }) => {
     <>
       <div className=' transform rounded-lg shadow-lg transition duration-100 ease-in hover:-translate-y-1'>
         <div className='flex items-center justify-between rounded-t-lg bg-[#eeee] p-2 text-xl'>
-          {location.place_name}
+          <Link href={`/plans/${location.planId}/${location.id}`}>
+            <a>
+            {location.place_name}
+            </a>
+          </Link>
           <div className='space-x-2'>
             <i
               className='fas fa-map-signs text-green-300 hover:text-green-700'
