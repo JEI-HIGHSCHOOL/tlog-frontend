@@ -6,6 +6,8 @@ import '@/styles/globals.css';
 import '@/styles/colors.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/styles/card.css';
+import 'moment/locale/ko'
+
 
 import Header from '@/components/layout/Header';
 import Seo from '@/components/Seo';

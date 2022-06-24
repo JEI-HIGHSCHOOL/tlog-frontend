@@ -76,10 +76,12 @@ const GetMyPlan: NextPage<ServerSideProps<UserPlans>> = ({
         <h1 className='mx-auto mb-5 flex justify-center text-4xl'>
           내가 만든 계획
         </h1>
+        <div className='flex flex-col space-y-2'>
+        {plans.map((plan) => (
+          <UserPlanCard key={plan.id} plan={plan} owner={data?.owner} />
+        ))}
+        </div>
       </section>
-      {plans.map((plan) => (
-        <UserPlanCard key={plan.id} plan={plan} />
-      ))}
     </>
   );
 };
