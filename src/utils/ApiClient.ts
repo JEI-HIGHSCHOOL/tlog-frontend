@@ -1,4 +1,5 @@
 import axios, { AxiosError, Method } from 'axios';
+import config from './Constants';
 
 const request = async (
   method: Method,
@@ -8,7 +9,7 @@ const request = async (
 ): Promise<any> => {
   const request = await axios({
     method,
-    url: `http://localhost:3000${path}`,
+    url: `${config.BASE_API_URL}${path}`,
     data,
     headers: {
       Authorization: auth ? 'Bearer ' + auth : '',
