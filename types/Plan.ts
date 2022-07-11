@@ -6,7 +6,7 @@ export interface Plans {
   share: boolean;
   userId: string;
   plans: Plan[];
-  owner: User;
+  owner?: User;
   title: string;
 }
 
@@ -20,6 +20,7 @@ export interface Plan {
   place_address: string;
   place_name: string;
   planId: string;
+  owner: User
   plan?: Plans
   planImage?: PlainImage[]
 }

@@ -1,0 +1,25 @@
+.planCardWrap {
+  font-family: 'Noto Sans KR', sans-serif;
+  width: 100%;
+  max-width: 1080px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 16px;
+  display: flex;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.planCardBody { 
+  position: relative;
+  border: 1px solid;
+  width: calc(100% / 3 - 7px - 0.01px);
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 640px) {
+  .planCardBody {
+    width: 100%;
+  }
+}

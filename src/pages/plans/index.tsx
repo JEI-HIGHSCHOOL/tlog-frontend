@@ -1,4 +1,5 @@
 import Button from '@/components/buttons/Button';
+import CreatePlanIcon from '@/components/buttons/CreatePlanIcon';
 import ErrorPage from '@/components/Error';
 import Input from '@/components/input/input';
 import Card from '@/components/layout/Card';
@@ -82,6 +83,7 @@ const GetMyPlan: NextPage<ServerSideProps<UserPlans>> = ({
         ))}
         </div>
       </section>
+      <CreatePlanIcon/>
     </>
   );
 };

@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Seo />
       <Header />
-      <div className='mt-24'>
+      <div className='mt-24 max-w-[90vw] mx-auto'>
         <Component {...pageProps} />
       </div>
       <ToastContainer />

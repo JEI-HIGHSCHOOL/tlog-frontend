@@ -3,8 +3,9 @@ import Layout from '@/components/layout/Layout';
 import NextImage from '@/components/NextImage';
 import TravelCard from '@/components/layout/TravelCard'
 import { GetStaticProps, NextPage } from 'next';
-import { Plan, ServerSideProps } from 'types';
+import { Plan, Plans, ServerSideProps } from 'types';
 import Client from '@/utils/ApiClient';
+import PlanCardStyle from "@/styles/planCard.module.css"
 
 export const getStaticProps: GetStaticProps<ServerSideProps<HomePageProps>> = async() => {
     const data = await Client(
@@ -30,14 +31,13 @@ export const getStaticProps: GetStaticProps<ServerSideProps<HomePageProps>> = as
         plans: data.data
       },
       error: false
-    }
+    },
+    revalidate: 500
   }
 }
 const HomePage: NextPage<ServerSideProps<HomePageProps>> = ({error, message, data}) => {
   return (
     <>
-    <section className='mt-10 flex items-center justify-center'>
-    </section>
     <section className='mt-10 flex items-center justify-center'>
         <Card
           background='#a0e4e8'
@@ -63,12 +63,17 @@ const HomePage: NextPage<ServerSideProps<HomePageProps>> = ({error, message, dat
           }
         />
       </section>
+      <section className={PlanCardStyle.planCardWrap + " sm:space-x-2.5"}>
+        {data?.plans.map((plan, index) => (
+          <TravelCard plan={plan}/>
+        ))}
+      </section>
     </>
   );
 }
 
 interface HomePageProps {
-  plans: Plan[]
+  plans: Plans[]
 }
 
 export default HomePage;
