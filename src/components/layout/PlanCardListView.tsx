@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import * as React from 'react';
-import { Plan, SearchLocation } from 'types';
+import { Plan, SearchLocation, User } from 'types';
 
-const PlanCard: React.FC<PlanCardProps> = ({ location, deletePlan }) => {
+const PlanCard: React.FC<PlanCardProps> = ({
+  location,
+  deletePlan,
+  loggedUser,
+  ownerUser,
+}) => {
   const deletePlanHandler = () => {
     deletePlan(location.id);
   };
@@ -17,9 +22,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ location, deletePlan }) => {
       <div className=' transform rounded-lg shadow-lg transition duration-100 ease-in hover:-translate-y-1'>
         <div className='flex items-center justify-between rounded-t-lg bg-[#eeee] p-2 text-xl'>
           <Link href={`/plans/${location.planId}/${location.id}`}>
-            <a>
-            {location.place_name}
-            </a>
+            <a>{location.place_name}</a>
           </Link>
           <div className='space-x-2'>
             <i
@@ -34,12 +37,14 @@ const PlanCard: React.FC<PlanCardProps> = ({ location, deletePlan }) => {
                 viewRoadView();
               }}
             />
-            <i
-              className='fas fa-ban text-red-300 hover:text-red-700'
-              onClick={() => {
-                deletePlanHandler();
-              }}
-            />
+            {loggedUser?.id === ownerUser?.id ?? (
+              <i
+                className='fas fa-ban text-red-300 hover:text-red-700'
+                onClick={() => {
+                  deletePlanHandler();
+                }}
+              />
+            )}
           </div>
         </div>
         <div className='flex w-full flex-col rounded-b-lg border px-2 py-4'>
@@ -61,6 +66,8 @@ const PlanCard: React.FC<PlanCardProps> = ({ location, deletePlan }) => {
 interface PlanCardProps {
   location: Plan;
   deletePlan: (id: string) => void;
+  loggedUser?: User;
+  ownerUser?: User;
 }
 
 export default PlanCard;

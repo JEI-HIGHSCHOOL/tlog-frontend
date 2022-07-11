@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 import Toast from '@/utils/Toast';
 import Logo from '~/images/logo.png';
 import axios from 'axios';
-import request from '@/utils/ApiClient';
 
 const links = [
   { href: '/', label: '홈' },
@@ -41,10 +40,10 @@ export default function Header() {
 
   const logout = async () => {
     setUser(null);
-    setCookie('Authorization', '1', {
+    setCookie('Authorization', '', {
       maxAge: 1,
     });
-    request('GET', '/auth/logout').then((data) => {
+    clinet('GET', '/auth/logout').then((data) => {
       router.reload();
     });
   };
@@ -153,7 +152,7 @@ export default function Header() {
                   </>
                 ) : (
                   <>
-                    <Link href='/login'>
+                    <Link href={`/login?redirect=${router.asPath}`}>
                       <a className='mt-4 block rounded-lg px-3 py-2 text-lg font-medium text-gray-700 hover:text-sky-500 hover:underline hover:underline-offset-4 lg:mt-0 lg:inline-block'>
                         로그인
                       </a>

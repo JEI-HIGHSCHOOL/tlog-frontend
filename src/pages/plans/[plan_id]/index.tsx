@@ -24,11 +24,12 @@ import {
 export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (
   context
 ) => {
+  const authorization = context.req.cookies['Authorization'];
   const data = await Client(
     'GET',
     `/plans/${encodeURI(context.params?.plan_id as string)}`,
     null,
-    context.req.cookies['Authorization']
+    authorization
   );
   if (data.status !== 200) {
     return {
@@ -77,7 +78,7 @@ const GetPlan: NextPage<ServerSideProps<Plans>> = ({
             {data?.title}
           </h1>
           <h1 className='mx-auto flex justify-end text-xl'>
-            {data?.owner.name}님의 여행계획
+            {data?.owner?.name}님의 여행계획
           </h1>
         </div>
         <div className='space-y-5'>
@@ -86,6 +87,8 @@ const GetPlan: NextPage<ServerSideProps<Plans>> = ({
               location={plan}
               key={plan.id}
               deletePlan={deletePlanHandler}
+              loggedUser={plan.user}
+              ownerUser={plan.owner}
             />
           ))}
         </div>

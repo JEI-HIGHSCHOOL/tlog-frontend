@@ -5,6 +5,7 @@ export interface Plans {
   createdAt: Date;
   share: boolean;
   userId: string;
+  like: number;
   plans: Plan[];
   owner?: User;
   title: string;
@@ -20,9 +21,10 @@ export interface Plan {
   place_address: string;
   place_name: string;
   planId: string;
-  owner: User
-  plan?: Plans
-  planImage?: PlainImage[]
+  owner: User;
+  plan?: Plans;
+  planImage?: PlainImage[];
+  user?: User;
 }
 
 export interface PlainImage {

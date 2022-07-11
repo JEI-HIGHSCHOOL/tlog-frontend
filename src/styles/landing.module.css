@@ -1,0 +1,13 @@
+.overviewTable {
+  width: 1000px;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.overviewNumber {
+}
+
+.overviewTbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
