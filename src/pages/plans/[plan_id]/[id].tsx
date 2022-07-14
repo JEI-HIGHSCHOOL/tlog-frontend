@@ -1,7 +1,7 @@
 import Button from '@/components/buttons/Button';
 import ErrorPage from '@/components/Error';
 import Input from '@/components/input/input';
-import Constants from "@/utils/Constants"
+import Constants from '@/utils/Constants';
 import Card from '@/components/layout/Card';
 import Layout from '@/components/layout/Layout';
 import PlanCardListView from '@/components/layout/PlanCardListView';
@@ -14,7 +14,8 @@ import { AxiosError } from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import ImageSlider from 'react-simple-image-slider';
+import ImageSlider from 'image-slider-react';
+
 import {
   Geolocation,
   Plan,
@@ -29,7 +30,9 @@ export const getServerSideProps: GetServerSideProps<ServerSideProps> = async (
 ) => {
   const data = await Client(
     'GET',
-    `/plans/${encodeURI(context.params?.plan_id as string)}/${encodeURI(context.params?.id as string)}/detail`,
+    `/plans/${encodeURI(context.params?.plan_id as string)}/${encodeURI(
+      context.params?.id as string
+    )}/detail`,
     null,
     context.req.cookies['Authorization']
   );
@@ -57,25 +60,26 @@ const GetPlanDetail: NextPage<ServerSideProps<Plan>> = ({
   data,
   message,
 }) => {
-  const [plan, setPlan] = useState<Plan|undefined>(data ?? undefined);
+  const [plan, setPlan] = useState<Plan | undefined>(data ?? undefined);
   const [map, setMap] = useState<kakao.maps.Map>();
   const onChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     if (e.target.files) {
-      const uploadFile = e.target.files[0];
+      const uploadImage = e.target.files[0];
       const formData = new FormData();
-      formData.append('img', uploadFile);
+      formData.append('img', uploadImage);
       request(
         'POST',
         `/plans/${plan?.planId}/${plan?.id}/image`,
         formData
       ).then((res) => {
-        console.log(res);
+        image.push(Constants.CLOUD_FRONT + '/' + res.data);
       });
-      console.log(uploadFile);
     }
   };
-  const image: string[] = plan?.planImage?.map(image => {return Constants.BASE_API_URL + "/images/" + image.imageUrl}) || [];
+  const image: string[] =
+    plan?.planImage?.map((image) => {
+      return Constants.CLOUD_FRONT + '/' + image.imageUrl;
+    }) || [];
   if (error) return <ErrorPage message={message} />;
   return (
     <>
@@ -85,31 +89,61 @@ const GetPlanDetail: NextPage<ServerSideProps<Plan>> = ({
       >
         <div className='mb-5'>
           <h1 className='mx-auto flex justify-center text-4xl'>
-           {plan?.place_name}          
+            {plan?.place_name}
           </h1>
           <h1 className='mx-auto flex justify-end text-xl'>
             {plan?.plan?.title}
           </h1>
         </div>
-        <div className='space-y-5'>
-          {!plan?.planImage || plan.planImage.length === 0 ? <>
-            
-          </> : <>
-          <ImageSlider
-                width={'100%'}
-                height={'500px'}
-                images={image} showNavs={true} showBullets={true}          
-          />
-            </>}
-            <input
-        type='file'
-        id='profile-upload'
-        accept='image/*'
-        onChange={onChangeImg}
-      />
+        <div className='my-7 overflow-hidden'>
+          {(!plan?.planImage && plan?.planImage?.length === 0) ||
+          image.length === 0 ? (
+            <>
+              <div className='flex w-full items-center justify-center'>
+                <label
+                  htmlFor='dropzone-file'
+                  className='dark:hover:bg-bray-800 flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600'
+                >
+                  <div className='flex flex-col items-center justify-center pt-5 pb-6'>
+                    <svg
+                      className='mb-3 h-10 w-10 text-gray-400'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth='2'
+                        d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'
+                      ></path>
+                    </svg>
+                    <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
+                      <span className='font-semibold'>업로드할 파일 선택</span>
+                    </p>
+                    <p className='text-xs text-gray-500 dark:text-gray-400'>
+                      PNG, JPG 또는 GIF
+                    </p>
+                  </div>
+                  <input
+                    accept='image/*'
+                    id='dropzone-file'
+                    type='file'
+                    className='hidden'
+                    onChange={onChangeImg}
+                  />
+                </label>
+              </div>
+            </>
+          ) : (
+            <>
+              <ImageSlider images={image} height='100%' width='600px' />
+            </>
+          )}
         </div>
-        <div className='space-y-5'>
-        <Map // 지도를 표시할 Container
+        <div className='my-7'>
+          <Map // 지도를 표시할 Container
             center={{
               lat: plan?.longitude ?? 0,
               lng: plan?.latitude ?? 0,
@@ -134,15 +168,14 @@ const GetPlanDetail: NextPage<ServerSideProps<Plan>> = ({
                   <div className='title'>{plan?.place_name}</div>
                   <div className='body'>
                     <div className='desc'>
-                      <div className='ellipsis'>
-                        {plan?.place_address}
-                      </div>
+                      <div className='ellipsis'>{plan?.place_address}</div>
                       <div className='jibun ellipsis'>
                         {plan?.place_phone && (
                           <>전화번호 - {plan?.place_phone}</>
                         )}
-                        {!plan?.place_phone &&
-                          !plan?.place_address && <>정보없음</>}
+                        {!plan?.place_phone && !plan?.place_address && (
+                          <>정보없음</>
+                        )}
                       </div>
                     </div>
                   </div>

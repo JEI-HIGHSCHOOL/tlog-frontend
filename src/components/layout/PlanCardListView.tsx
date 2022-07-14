@@ -37,14 +37,12 @@ const PlanCard: React.FC<PlanCardProps> = ({
                 viewRoadView();
               }}
             />
-            {loggedUser?.id === ownerUser?.id ?? (
-              <i
-                className='fas fa-ban text-red-300 hover:text-red-700'
-                onClick={() => {
-                  deletePlanHandler();
-                }}
-              />
-            )}
+            <i
+              className='fas fa-ban text-red-300 hover:text-red-700'
+              onClick={() => {
+                deletePlanHandler();
+              }}
+            />
           </div>
         </div>
         <div className='flex w-full flex-col rounded-b-lg border px-2 py-4'>

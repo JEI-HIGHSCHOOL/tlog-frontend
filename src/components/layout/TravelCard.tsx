@@ -17,7 +17,7 @@ const UserPlanCard: React.FC<UserPlanCardProps> = ({ plan, owner }) => {
   const images: string[] = [];
   plan.plans.forEach((plan) => {
     plan.planImage?.forEach((image) => {
-      images.push('/' + image.imageUrl);
+      images.push(Constants.CLOUD_FRONT + '/' + image.imageUrl);
     });
   });
   return (
