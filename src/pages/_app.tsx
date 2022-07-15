@@ -6,7 +6,7 @@ import '@/styles/globals.css';
 import '@/styles/colors.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@/styles/card.css';
-import 'moment/locale/ko'
+import 'moment/locale/ko';
 
 import Header from '@/components/layout/Header';
 import Seo from '@/components/Seo';
@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Seo />
       <Header />
-      <div className='mx-auto' style={{marginTop: "4.25rem"}}>
+      <div className='mx-auto' style={{ marginTop: '4.25rem' }}>
         <Component {...pageProps} />
       </div>
       <ToastContainer />

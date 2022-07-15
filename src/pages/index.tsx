@@ -55,7 +55,7 @@ const HomePage: NextPage<ServerSideProps<HomePageProps>> = ({
   const [sortType, setSortType] = useState<sortType>('like');
   return (
     <>
-      <section className='mt-10 flex items-center justify-center'>
+      <section className='mt-24 flex items-center justify-center'>
         <Card
           href='/plans/create'
           background='#a0e4e8'

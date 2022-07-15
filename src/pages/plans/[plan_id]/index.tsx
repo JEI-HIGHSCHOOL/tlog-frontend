@@ -70,7 +70,7 @@ const GetPlan: NextPage<ServerSideProps<Plans>> = ({
   return (
     <>
       <section
-        className='container mx-auto px-4'
+        className='mx-auto mt-24 px-4'
         style={{ fontFamily: 'LeeSeoyun', maxWidth: '1000px' }}
       >
         <div className='mb-5'>

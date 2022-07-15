@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps<
     null,
     context.req.cookies['Authorization']
   );
-  if(data.status == 401) {
+  if (data.status == 401) {
     return {
       props: {
         error: true,
@@ -84,19 +84,19 @@ const GetMyPlan: NextPage<ServerSideProps<UserPlans>> = ({
   return (
     <>
       <section
-        className='container mx-auto'
-        style={{ fontFamily: 'LeeSeoyun' }}
+        className='mx-auto mt-24'
+        style={{ fontFamily: 'LeeSeoyun', maxWidth: '80vw' }}
       >
         <h1 className='mx-auto mb-5 flex justify-center text-4xl'>
           내가 만든 계획
         </h1>
         <div className='flex space-x-4'>
-        {plans.map((plan) => (
-          <TravelCard plan={plan}/>
-        ))}
+          {plans.map((plan, index) => (
+            <TravelCard plan={plan} key={index} />
+          ))}
         </div>
       </section>
-      <CreatePlanIcon/>
+      <CreatePlanIcon />
     </>
   );
 };

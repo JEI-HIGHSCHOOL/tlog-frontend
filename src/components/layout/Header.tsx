@@ -50,7 +50,7 @@ export default function Header() {
   return (
     <>
       <nav
-        className='fixed top-0 z-40 flex w-full flex-wrap items-center border-b border-gray-900/10 px-5 py-2 text-gray-100 backdrop-blur'
+        className='fixed top-0 z-40 flex w-full flex-wrap items-center border-b border-gray-900/10 bg-white px-5 py-2 text-gray-100'
         onClick={() => OnclickNavBarOpen()}
         style={{ fontFamily: 'LeeSeoyun' }}
       >
