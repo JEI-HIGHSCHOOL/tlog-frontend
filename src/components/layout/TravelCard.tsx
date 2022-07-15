@@ -9,7 +9,6 @@ import Toast from '@/utils/Toast';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import config from '@/utils/Constants';
 import cardCss from '@/styles/planCard.module.css';
-import Slider from 'react-simple-image-slider';
 import { formatNumber } from '@/utils/Fotmenter';
 import Link from 'next/link';
 

@@ -40,6 +40,8 @@ class MyDocument extends Document {
             type='text/javascript'
             src='//dapi.kakao.com/v2/maps/sdk.js?appkey=33278a561e2ff3c0c117fcf4698ee381&libraries=services,clusterer'
           ></script>
+          <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.1/swiper-bundle.min.css' crossOrigin='anonymous'/>
+          <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.3.1/swiper-bundle.css' crossOrigin='anonymous'/>
         </Head>
         <body>
           <Main />

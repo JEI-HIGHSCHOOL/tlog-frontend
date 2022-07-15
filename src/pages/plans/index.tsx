@@ -4,8 +4,9 @@ import ErrorPage from '@/components/Error';
 import Input from '@/components/input/input';
 import Card from '@/components/layout/Card';
 import Layout from '@/components/layout/Layout';
+import PlanCard from '@/components/layout/PlanCardListView';
 import PlanCardListView from '@/components/layout/PlanCardListView';
-import UserPlanCard from '@/components/layout/UserPlanCard';
+import TravelCard from '@/components/layout/TravelCard';
 import NextImage from '@/components/NextImage';
 import Seo from '@/components/Seo';
 import Skeleton from '@/components/Skeleton';
@@ -42,7 +43,19 @@ export const getServerSideProps: GetServerSideProps<
     null,
     context.req.cookies['Authorization']
   );
-  if (data.status !== 200) {
+  if(data.status == 401) {
+    return {
+      props: {
+        error: true,
+        message: data.message,
+        data: null,
+      },
+      redirect: {
+        permanent: false,
+        destination: '/login?redirect=/plans',
+      },
+    };
+  } else if (data.status !== 200) {
     return {
       props: {
         error: true,
@@ -77,9 +90,9 @@ const GetMyPlan: NextPage<ServerSideProps<UserPlans>> = ({
         <h1 className='mx-auto mb-5 flex justify-center text-4xl'>
           내가 만든 계획
         </h1>
-        <div className='flex flex-col space-y-2'>
+        <div className='flex space-x-4'>
         {plans.map((plan) => (
-          <UserPlanCard key={plan.id} plan={plan} owner={data?.owner} />
+          <TravelCard plan={plan}/>
         ))}
         </div>
       </section>

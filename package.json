@@ -20,6 +20,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.26",
     "@headlessui/react": "^1.6.0",
     "@types/react-copy-to-clipboard": "^5.0.2",
     "axios": "^0.27.2",
@@ -33,6 +34,7 @@
     "react-icons": "^4.3.1",
     "react-kakao-maps-sdk": "^1.0.8",
     "react-toastify": "^8.2.0",
+    "swiper": "^8.3.1",
     "tailwind-merge": "^1.2.1"
   },
   "devDependencies": {
