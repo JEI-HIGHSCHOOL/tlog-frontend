@@ -153,121 +153,127 @@ export default function NewPlansPage() {
         className='container mx-auto'
         style={{ fontFamily: 'LeeSeoyun' }}
       >
-        <h1 className='mx-auto mb-5 flex justify-center text-4xl'>
+        <h1 className='mx-auto mt-24 mb-4 flex justify-center text-4xl'>
           여행계획 만들기
         </h1>
-        <span className='text-2xl'>계획이름</span>
-        <Input
-          placeholder='2박 3일 여행'
-          className='mb-2'
-          type='title'
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <span className='text-2xl'>방문할 장소</span>
-        <div className='mb-2 flex flex-row'>
-          <Input
-            placeholder='서울'
-            type='place'
-            onChange={(e) => {
-              setPlaceName(e.target.value);
-            }}
-          />
-          <Button
-            placeholder='검색'
-            onClick={() => {
-              findPlaces();
-            }}
-            className='ml-2 w-48'
-          />
-        </div>
-        {places ? (
-          <Map // 지도를 표시할 Container
-            center={{
-              lat: places[nowPlace].longitude,
-              lng: places[nowPlace].latitude,
-            }}
-            style={{
-              // 지도의 크기
-              width: '100%',
-              height: '400px',
-            }}
-            className='rounded-lg'
-            level={7} // 지도의 확대 레벨
-            onCreate={setMap}
-          >
-            <MapMarker
-              position={{
-                lat: places[nowPlace].longitude,
-                lng: places[nowPlace].latitude,
+        <div className='flex flex-col lg:flex-row'>
+          <div className='mr-3 w-full lg:w-4/6'>
+            <span className='text-2xl'>계획이름</span>
+            <Input
+              placeholder='2박 3일 여행'
+              className='mb-2'
+              type='title'
+              onChange={(e) => {
+                setTitle(e.target.value);
               }}
-            >
-              <div className='map-wrap'>
-                <div className='info'>
-                  <div className='title'>{places[nowPlace].place_name}</div>
-                  <div className='body'>
-                    <div className='desc'>
-                      <div className='ellipsis'>
-                        {places[nowPlace].place_address}
-                      </div>
-                      <div className='jibun ellipsis'>
-                        {places[nowPlace].place_phone && (
-                          <>전화번호 - {places[nowPlace].place_phone}</>
-                        )}
-                        {!places[nowPlace].place_phone &&
-                          !places[nowPlace].place_address && <>정보없음</>}
+            />
+            <span className='text-2xl'>방문할 장소</span>
+            <div className='mb-2 flex flex-row'>
+              <Input
+                placeholder='서울'
+                type='place'
+                onChange={(e) => {
+                  setPlaceName(e.target.value);
+                }}
+              />
+              <Button
+                placeholder='검색'
+                onClick={() => {
+                  findPlaces();
+                }}
+                className='ml-2 w-48'
+              />
+            </div>
+            {places ? (
+              <Map // 지도를 표시할 Container
+                center={{
+                  lat: places[nowPlace].longitude,
+                  lng: places[nowPlace].latitude,
+                }}
+                style={{
+                  // 지도의 크기
+                  width: '100%',
+                  height: '400px',
+                }}
+                className='rounded-lg'
+                level={7} // 지도의 확대 레벨
+                onCreate={setMap}
+              >
+                <MapMarker
+                  position={{
+                    lat: places[nowPlace].longitude,
+                    lng: places[nowPlace].latitude,
+                  }}
+                >
+                  <div className='map-wrap'>
+                    <div className='info'>
+                      <div className='title'>{places[nowPlace].place_name}</div>
+                      <div className='body'>
+                        <div className='desc'>
+                          <div className='ellipsis'>
+                            {places[nowPlace].place_address}
+                          </div>
+                          <div className='jibun ellipsis'>
+                            {places[nowPlace].place_phone && (
+                              <>전화번호 - {places[nowPlace].place_phone}</>
+                            )}
+                            {!places[nowPlace].place_phone &&
+                              !places[nowPlace].place_address && <>정보없음</>}
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </MapMarker>
+              </Map>
+            ) : (
+              <Skeleton
+                style={{ width: '100%', height: '450px' }}
+                className='rounded-lg'
+                placeholder='추가할 장소를 검색해주세요!'
+              />
+            )}
+            <div className='mt-3 flex flex-row'>
+              <Button
+                placeholder='이곳이 아니에요!'
+                onClick={() => {
+                  NextPlaces();
+                }}
+                className=' w-32'
+                type='cancel'
+              />
+              <Button
+                placeholder='추가하기'
+                onClick={() => {
+                  addPlan();
+                }}
+                className='ml-2 w-32'
+                type='success'
+              />
+            </div>
+          </div>
+          <div
+            className='mx-auto mt-10 flex h-full min-h-[50vh] w-full flex-col lg:mt-9 lg:w-2/6'
+            style={{ fontFamily: 'LeeSeoyun' }}
+          >
+            {planList.length === 0 ? (
+              <div className='min my-auto flex h-full flex-col items-center justify-center text-2xl'>
+                <span>추가된 계획이 없습니다</span>
+                <span>계획을 추가해보세요!</span>
               </div>
-            </MapMarker>
-          </Map>
-        ) : (
-          <Skeleton
-            style={{ width: '100%', height: '450px' }}
-            className='rounded-lg'
-            placeholder='추가할 장소를 검색해주세요!'
-          />
-        )}
-        <div className='ml-auto mt-3 flex flex-row'>
-          <Button
-            placeholder='이곳이 아니에요!'
-            onClick={() => {
-              NextPlaces();
-            }}
-            className='ml-auto w-32'
-            type='cancel'
-          />
-          <Button
-            placeholder='추가하기'
-            onClick={() => {
-              addPlan();
-            }}
-            className='ml-2 w-32'
-            type='success'
-          />
+            ) : (
+              <div className='space-y-5'>
+                {planList.map((plan) => (
+                  <PlanCard
+                    location={plan}
+                    key={plan.id}
+                    deletePlan={deletePlan}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </section>
-      <section
-        className='container mx-auto mt-10 flex h-full min-h-[50vh] w-full flex-col'
-        style={{ fontFamily: 'LeeSeoyun' }}
-      >
-        <h1 className='mt-5 mb-3 text-4xl'>추가된 계획목록</h1>
-
-        {planList.length === 0 ? (
-          <div className='min my-auto flex h-full flex-col items-center justify-center text-2xl'>
-            <span>추가된 계획이 없습니다</span>
-            <span>계획을 추가해보세요!</span>
-          </div>
-        ) : (
-          <div className='space-y-5'>
-            {planList.map((plan) => (
-              <PlanCard location={plan} key={plan.id} deletePlan={deletePlan} />
-            ))}
-          </div>
-        )}
         <Button
           placeholder='저장하기'
           type='success'
