@@ -13,8 +13,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ message, status }) => {
     <>
       <Layout>
         <Seo templateTitle={message} />
-
-        <main>
+         <main>
           <section className='bg-white'>
             <div
               className='layout flex min-h-screen flex-col items-center justify-center text-center text-black'
